@@ -8,16 +8,20 @@ describe( 'wrong format', function () {
         expect( isJSON( '' ) ).to.equal( FALSE )
     } )
 
-    it( 'whitespace: should return true', function () {
+    it( 'whitespace: should return false', function () {
         expect( isJSON( ' ' ) ).to.equal( FALSE )
     } )
 
-    it( 'wrongly closed object: should return true', function () {
+    it( 'wrongly closed object: should return false', function () {
         expect( isJSON( '{' ) ).to.equal( FALSE )
     } )
 
-    it( 'wrongly closed array: should return true', function () {
+    it( 'wrongly closed array: should return false', function () {
         expect( isJSON( '[' ) ).to.equal( FALSE )
+    } )
+
+    it( 'jsonp : should return false', function () {
+        expect( isJSON( 'callback({})' ) ).to.equal( FALSE )
     } )
 } )
 
@@ -44,9 +48,5 @@ describe( 'correct format', function () {
 
     it( 'boolean false: should return true', function () {
         expect( isJSON( 'false' ) ).to.equal( TRUE )
-    } )
-
-    it( 'jsonp : should return true', function () {
-        expect( isJSON( 'callback({})' ) ).to.equal( FALSE )
     } )
 } )
